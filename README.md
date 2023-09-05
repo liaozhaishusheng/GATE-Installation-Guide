@@ -68,7 +68,7 @@
 
 ## Build Options of Geant4
 
-![](https://leanote.com/api/file/getImage?fileId=59a6faf3ab6441500400512e)
+![](2.png)
 配置說明：
 
   1. 不能選擇 GEANT4_BUILD_MULTITHREADED，Gate 不支持多線程的 Geant4.
@@ -187,7 +187,7 @@ sudo make install
 cd ../..
 ```
 
-![title](https://leanote.com/api/file/getImage?fileId=5d88d2a9ab6441211d000e2d)
+![title](3.png)
 
 ```
 sudo zypper in gengetopt
@@ -199,7 +199,7 @@ make -j4
 sudo make install
 ```
 
-![title](https://leanote.com/api/file/getImage?fileId=5d88d204ab6441211d000e29)
+![title](4.png)
 
 ```
 wget https://root.cern.ch/download/root_v6.14.04.source.tar.gz
@@ -238,8 +238,8 @@ sudo make install
     sudo make install
 ```
 
-![](https://leanote.com/api/file/getImage?fileId=59a6faf3ab6441500400512d)
-![](https://leanote.com/api/file/getImage?fileId=5d88d388ab6441211d000e34)
+![](5.png)
+![](6.png)
 
 3. Last step, update your environment variables file with the following command lines(bash or zsh): Gate/Root/Geant4
 
