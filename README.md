@@ -212,7 +212,6 @@ sudo make install
 ```
 
 
-
 # 六、GATE 8.2安裝
 
   1. Dependencies：
@@ -224,7 +223,7 @@ sudo make install
      - sudo zypper in libG4OpenGL libQt5OpenGL-devel libQt5PrintSupport-devel gccxml
      - lmf 3.0
      - RTK 1.4 (Optional dependencies)
-  2. install:
+  2. Install:
 
 ``` bash
     tar -xzf Gate-8.2.tar.gz -C /home/qingyu
@@ -270,7 +269,7 @@ Generating /home/qingyu1/gate_v8.0/examples/example_dosimetry/protontherapy/data
 
 
 
-# 六、`.bashrc` or `.zshrc` 文件配置
+# 七、`.bashrc` or `.zshrc` 文件配置
 
 ```
 # Geant4 10.4.2 & Gate_v8.1
