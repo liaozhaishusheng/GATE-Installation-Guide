@@ -45,7 +45,7 @@
   2. Dependencies： 
 
  - <del>` gdml `</del>
- - ` xerces-c `
+ - ` xerces-c `
  - ` libxerces-c-devel `
  - ` libqt4-devel ` ` libqt4-devel-doc `
  - ` libG4OpenGL ` ` libQt5OpenGL-devel `
