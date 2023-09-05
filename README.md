@@ -34,8 +34,7 @@
  sudo make install
 ```
 
-![](https://leanote.com/api/file/getImage?fileId=59a6faf2ab6441500400512c)
-</del>
+![](1.png)
 
 
 
