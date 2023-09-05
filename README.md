@@ -254,7 +254,7 @@ sudo make install
 NOTE:
 
  - 執行 gate 的 `make` 時，會出現下載 `data_Voxel_Phantom.root` 的錯誤，這種情況多嘗試幾次，直到下載成功。
- - 編譯不通過，顯示某些文件爲下在成功，解決方法是手動下在該文件至相應目錄：
+ - 編譯不通過，顯示某些文件未下載成功，解決方法是手動下載該文件至相應目錄：
 
 ```
 Generating /home/qingyu1/gate_v8.0/examples/example_ROOT_Analyse/data_PET.root
