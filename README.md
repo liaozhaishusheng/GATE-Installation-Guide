@@ -2,17 +2,17 @@
 
 # 運行環境： ` openSUSE Tumbleweed `
 
-# 一、準備工作：
+# Step 1: Preparation：
 
-  1. 編譯環境：
+  1. Compilation environment:
 
   - ` gcc ` 4.8 to 7.3
   - ` cmake ` 3.3 to last version
   - ` root ` 6.00 to last version
 
-  2. 源代碼下載：
+  2. Source code download:
 
-  - <del>[CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.3.4.3.tgz)</del>（geant4 已自帶CLHEP）
+  - <del>[CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.3.4.3.tgz)</del>（CLHEP is already included in geant4）
   - [geant4](http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.05.p01.tar.gz)
   - [gate](http://www.opengatecollaboration.org/sites/default/files/Gate-8.2.tar.gz)
   - <del>[lmf](http://www.opengatecollaboration.org/sites/default/files/lmf_v3_0.tar_2.gz)</del> (No more Optional Required)
@@ -20,10 +20,10 @@
 
 
 
-# <del>二、安裝 [CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/clhep23.html)：A Class library for High Energy Physics</del>
+# <del>Step 2: Installation of [CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/clhep23.html)：A Class library for High Energy Physics</del>
 
   1. Download the source：[clhep-2.3.4.3.tgz](http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.3.4.3.tgz);
-  2. 執行以下命令：
+  2. Run the following commands:
 
 ```
  tar -zxvf clhep-2.3.4.3.tgz
@@ -39,7 +39,7 @@
 
 
 
-# 三、geant4 10.05的安裝
+# Step 3: Installation of geant4 10.05
 
   1. Download the source：[geant4 10.05](http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.05.p01.tar.gz)
   2. Dependencies： 
@@ -69,16 +69,17 @@
 ## Build Options of Geant4
 
 ![](2.png)
-配置說明：
 
-  1. 不能選擇 GEANT4_BUILD_MULTITHREADED，Gate 不支持多線程的 Geant4.
-  2. GEANT4_INSTALL_DATADIR 指定data文件的位置，可以是CMAKE_INSTALL_DATA的相对位置
-  3. GEANT4_INSTALL_DATA 设置为ON时会从internet自动下载data
-  4. GEANT4_USE_SYSTEM_CLHEP 设置为ON时会使用外部的CLHEP；CLHEP_ROOT_DIR变量有值时自动为ON
-     CLHEP_ROOT_DIR CLHEP的安装位置
+Configuration Instructions:
+
+  1. Do not select GEANT4_BUILD_MULTITHREADED as Gate does not support multi-threaded Geant4.
+  2. GEANT4_INSTALL_DATADIR specifies the location of data files and can be a relative position to CMAKE_INSTALL_DATA.
+  3. GEANT4_INSTALL_DATA set to ON will automatically download data from the internet.
+  4. GEANT4_USE_SYSTEM_CLHEP set to ON will use an external CLHEP library. It will automatically be set to ON if the CLHEP_ROOT_DIR variable has a value.
 
 
-### geant4 相關插件：
+
+### Geant4 related plugins:：
 
 ```
 http://geant4.cern.ch/support/source/G4NDL.4.5.tar.gz
@@ -96,50 +97,46 @@ sudo mkdir /usr/local/share/Geant4-10.5.1/data/
 for tar in *.tar.gz; do sudo tar xvf $tar -C /usr/local/share/Geant4-10.5.1/data/; done
 ```
 
-## geant4 的[圖形引擎](http://geant4.cern.ch/UserDocumentation/UsersGuides/ForApplicationDeveloper)：
+## Geant4 [graphics engine](http://geant4.cern.ch/UserDocumentation/UsersGuides/ForApplicationDeveloper)：
 
-Geant4默认会安装这一些图形引擎：DAWNFILE, HepRepFile, HepRepXML, RayTracer, VRML1FILE, VRML2FILE and ATree and GAGTree.
+Geant4 comes with several default graphics engines:DAWNFILE, HepRepFile, HepRepXML, RayTracer, VRML1FILE, VRML2FILE and ATree and GAGTree.
 
-http://blog.renren.com/blog/bp/Q7K9U584qP 里面提到OpenGL引擎有四种运行方式 ` openGLX, openGLSX, openGLXm, openGLSXm`
+http://blog.renren.com/blog/bp/Q7K9U584qP mentions four ways to run the OpenGL engine: `openGLX, openGLSX, openGLXm, openGLSXm`
 
 
-## 安裝examples：
+
+## Installation of examples：
 
      cd /usr/local/share/Geant4-10.5.1/examples/
      sudo mkdir build
      sudo ccmake ../
      sudo make -j4
 
-在 `build` 文件夾中執行這些範例
-例如運行
+Run these examples in the `build` folder. For example, execute:
 
 ```
  ./exampleB1
 ```
-
-編譯的例子中，`~/geant4.10.03/examples/extended/` 下的 ` /persistency/ ` 三個例子，編譯出錯，暫時無法解決。將 ` ~/geant4.10.03/examples/extended/CMakeLists.txt ` 中 ` persistency ` 項註釋。
+In all examples, there are three examples under `~/geant4.10.03/examples/extended/persistency/` that fail to compile, and the issue cannot be resolved at the moment. Please comment out the `persistency` section in `~/geant4.10.03/examples/extended/CMakeLists.txt`.
 
 ``` 
  # add_subdirectory(persistency)
 ```
 
-運行例子時若出現：
-
+If the following error message appears when running the example
 ```
  libGL error: failed to load driver: swrast
 ```
-
-這是顯卡驅動造成的，需要安裝 `Mesa-32bit`，若安裝完成後仍出現錯誤，執行
-
+This is caused by the graphics driver. You need to install `Mesa-32bit`. If the error still persists after installation, run:
 ```
  sudo mkdir /usr/lib64/dri/updates/
  ln -s /usr/lib64/dri/swrast_dri.so /usr/lib64/dri/updates/swrast_dri.so
 ```
 
 
-# <del>四、lmf</del>
+# <del>Step 4: Installation of lmf</del>
 
- - 修改 ./lmf_v3.0/makefile:
+ - Modify  ./lmf_v3.0/makefile:
 
 ```
 PATHLMFCOMMON = /opt/lmf
@@ -155,7 +152,7 @@ install :
 	-chmod -R 555 $(PATHLMFCOMMON)
 ```
 
- - 修改 ./lmf_v3.0/examples/makefile:
+ - Modify  ./lmf_v3.0/examples/makefile:
 
 ```
 EXE_04 : exempleMain_04.o
@@ -173,7 +170,7 @@ cd ./example
 make
 ```
 
-# 五、ITK && RTK && root6
+# Step 5: Installation of ITK && RTK && root6
 
 ```
 sudo zypper in valgrind
@@ -212,7 +209,7 @@ sudo make install
 ```
 
 
-# 六、GATE 8.2安裝
+# Step 6: Installation of GATE 8.2
 
   1. Dependencies：
      - ` gcc ` 4.8 to 7.3 (Note: with gcc 6.* and newer, ROOT 5 does not compile!)
@@ -252,8 +249,8 @@ sudo make install
 
 NOTE:
 
- - 執行 gate 的 `make` 時，會出現下載 `data_Voxel_Phantom.root` 的錯誤，這種情況多嘗試幾次，直到下載成功。
- - 編譯不通過，顯示某些文件未下載成功，解決方法是手動下載該文件至相應目錄：
+ - it is common to encounter errors downloading `data_Voxel_Phantom.root` When using the `make` command to compile GATE, In such cases, it is necessary to try compiling multiple times until the download is successful.
+ - If the compilation fails and displays errors indicating that certain files were not downloaded successfully, the solution is to manually download those files and place them in the corresponding directory.
 
 ```
 Generating /home/qingyu1/gate_v8.0/examples/example_ROOT_Analyse/data_PET.root
@@ -269,7 +266,7 @@ Generating /home/qingyu1/gate_v8.0/examples/example_dosimetry/protontherapy/data
 
 
 
-# 七、`.bashrc` or `.zshrc` 文件配置
+# Step 7 Configuration of `.bashrc` or `.zshrc`
 
 ```
 # Geant4 10.4.2 & Gate_v8.1
@@ -292,25 +289,26 @@ export G4SAIDXSDATA=/usr/local/share/Geant4-10.4.2/data/G4SAIDDATA1.1
 export G4ABLADATA=/usr/local/share/Geant4-10.4.2/data/G4ABLA3.1
 ```
 
-注意在 GreanWall 電腦上加入 `source /usr/local/bin/geant4.sh` 這句，會導致 `kde plasma` 桌面黑屏，在安裝 teamviewer 的系統中表現爲開機桌面上儘可見 teamviewer，通過teamviewer可調用firefox，也可連接控制其他電腦，但桌面環境未正常加載。但不加這句話，`Gate`運行時會提示
 
-```
-        [G4-cerr] 
--------- EEEE ------- G4Exception-START -------- EEEE -------
-*** G4Exception : PART70000
-      issued by : G4NuclideTable
-G4ENSDFSTATEDATA environment variable must be set
-*** Fatal Exception *** core dump ***
--------- EEEE -------- G4Exception-END --------- EEEE -------
+Note that adding `source /usr/local/bin/geant4.sh` to the `.bashrc` file in the GreanWall computer's system may cause issues with the KDE Plasma desktop. Specifically, the desktop may appear black, but if TeamViewer is installed, it can still be seen on the desktop. You can use TeamViewer to open Firefox and control other computers, but the desktop environment will not load properly. This is likely because `geant4.sh` is overriding certain path variables, causing the plasma shell to not function correctly. If you don't add `source /usr/local/bin/geant4.sh` to the `.bashrc` file, you may encounter the following error when running Gate:
 
-        [G4-cerr] 
-        [G4-cerr] *** G4Exception: Aborting execution ***
-Aborted (core dumped)
-```
+1.
+        ```
+                [G4-cerr] 
+        -------- EEEE ------- G4Exception-START -------- EEEE -------
+        *** G4Exception : PART70000
+            issued by : G4NuclideTable
+        G4ENSDFSTATEDATA environment variable must be set
+        *** Fatal Exception *** core dump ***
+        -------- EEEE -------- G4Exception-END --------- EEEE -------
 
-或者是提示找不到 `libG4Tree.so`。
-解決方法是在`.bashrc` or `.zshrc`中加入
+                [G4-cerr] 
+                [G4-cerr] *** G4Exception: Aborting execution ***
+        Aborted (core dumped)
+        ```
+2.`libG4Tree.so` not found
+Solution: Add the following line to your `.bashrc` or `.zshrc` file:
 
  > export G4ENSDFSTATEDATA=/usr/local/share/Geant4-10.2.3/data/G4ENSDFSTATE1.2.3
- > #新版本的 `Geant4` 不需要在加入其他變量信息！！！
- > #Linux 桌面崩潰無法進入時，須考慮是否由用戶配置文件導致，可登錄新用戶查看能否正常進入桌面！！！
+ > #The new version of Geant4 does not require adding additional variable information!!!
+ > #When the Linux desktop crashes and cannot be accessed, consider whether it is caused by the user configuration file. You can log in as a new user to see if you can enter the desktop normally!!!
