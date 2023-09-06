@@ -1,6 +1,6 @@
 # GATE-Installation-Guide
 
-# 運行環境： ` openSUSE Tumbleweed `
+# OS: ` openSUSE Tumbleweed `
 
 # Step 1: Preparation：
 
