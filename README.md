@@ -1,6 +1,6 @@
 # Installation of Gate for PET Simulation
 
-## 目录
+## Contents
 
 -   [OS: openSUSE Tumbleweed](#OS-openSUSE-Tumbleweed)
 -   [Step 1: Preparation：](#Step-1-Preparation)
